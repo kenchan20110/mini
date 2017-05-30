@@ -58,4 +58,10 @@ export class HomeComponent implements OnInit {
     this.start.value = '';
     this.end.value = '';
   }
+
+  public calcRoute2(value: string, value2: string) {
+    var start = value;
+    var end = value2;
+    alert(start+"_"+end);
+  }
 }
