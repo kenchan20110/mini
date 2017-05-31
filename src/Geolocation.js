@@ -3,7 +3,6 @@ var hk = new google.maps.LatLng(22.38,114.10);
 var browserSupportFlag =  new Boolean();
 
 var directionsDisplay;
-var directionsService = new google.maps.DirectionsService();
 var oldDirections = [];
 var currentDirections = null;
 
@@ -61,19 +60,21 @@ function initialize() {
   }
 }
 
-function calcRoute2(pFrom,pEnd) {
-    alert("test");
+let calcRoute2 = function(pFrom,pEnd) {
+    //alert(pFrom+"_"+pEnd);
   var start = pFrom;
   var end = pEnd;
   var request = {
     origin:start,
     destination:end,
-    travelMode: google.maps.DirectionsTravelMode.TRANSIT
+    travelMode: google.maps.DirectionsTravelMode.DRIVING
   };
+  var directionsService = new google.maps.DirectionsService();
   directionsService.route(request, function(response, status) {
-
+  alert(response+"_"+status);
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
     }
   });
+
 }

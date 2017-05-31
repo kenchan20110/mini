@@ -16,10 +16,10 @@
 
   <!-- base url -->
   <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
-
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+  <script type="text/javascript" charset="utf-8" async="" src="Geolocation.js"></script>
   <%= htmlWebpackPlugin.files.webpackManifest %>
-<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
-<script type="text/javascript" charset="utf-8" async="" src="Geolocation.js"></script>
+
 </head>
 
 <body onload="initialize()">

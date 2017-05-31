@@ -7,6 +7,8 @@ import { AppState } from '../app.service';
 import { Title } from './title';
 import { XLargeDirective } from './x-large';
 
+declare function calcRoute2(from:any,to:any): any;
+
 @Component({
   /**
    * The selector is what angular internally uses
@@ -54,14 +56,10 @@ export class HomeComponent implements OnInit {
   public submitState(value: string) {
     console.log('submitState', value);
     this.appState.set('value', value);
-    //this.localState.value = '';
+    //this.localState.value = '';   
+    if(calcRoute2 != undefined)
+      calcRoute2(this.start.value,this.end.value);
     this.start.value = '';
     this.end.value = '';
-  }
-
-  public calcRoute2(value: string, value2: string) {
-    var start = value;
-    var end = value2;
-    alert(start+"_"+end);
   }
 }
