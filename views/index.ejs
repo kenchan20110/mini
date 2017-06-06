@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
+    <script type="text/javascript" charset="utf-8" async="" src="/javascripts/Geolocation.js"></script>
+  </head>
+  <body onload="initialize()">
+
+        <h1>Search Mini Here</h1>
+        <hr>
+     
+      <input
+        type="text"
+        id="txtFrom"
+        placeholder="Start Location"
+        autofocus>
+      <br />
+      <input
+        type="text" 
+        id="txtEnd"
+        placeholder="End Location"
+        autofocus>
+      <br />
+      <button id="btnSubmit" onclick="calcRoute2(txtFrom.value,txtEnd.value)">Submit</button>
+    
+    <hr>
+
+    <table>
+
+        <% for ( var i = 0 ; i < data.length ; i++){ %>
+            <tr>
+
+                <td>
+                    <%= data[i].X  %>
+                </td>
+                <td>
+                    <%= data[i].Y  %>
+                </td>
+            </tr>
+            <% } %>
+    </table>
+    <button id="btnSubmit" onclick="markerLatLng(<%= data[1].X  %>,<%= data[1].Y  %>)">Submit</button>
+
+    <div id="map_canvas" style="float:left;width:70%;height:480px;">
+  <div style="float:right;width:30%;height:480px;overflow:auto">   
+    <div id="directions_panel" style="width:100%"></div>
+  </div>
+  </div>
+  </body>
+    <footer>
+      <div>
+        <a href="/">
+          <img src="/images/mini.png" width="50%">
+        </a>
+      </div>
+    </footer>
+
+</html>
