@@ -2,7 +2,8 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
     <script type="text/javascript" charset="utf-8" async="" src="/javascripts/Geolocation.js"></script>
   </head>
@@ -10,44 +11,41 @@
 
         <h1>Search Mini Here</h1>
         <hr>
-     
-      <input
-        type="text"
-        id="txtFrom"
-        placeholder="Start Location"
-        autofocus>
+
+      <div>
+        <%
+        var arrX = new Array()
+        var arrY = new Array()
+
+         for ( var i = 0 ; i < data.length ; i++){ 
+                    arrX.push(data[i].X)
+                    arrY.push(data[i].Y)
+         } 
+          arrX = arrX.join('_')
+          arrY = arrY.join('_')
+         %>
+
+
+            <!--<%= arrX  %>
+            <%= arrY  %>-->
+      </div>
+
+
+      <input type="text" id="txtFrom" placeholder="Start Location" autofocus style="width:400px">
       <br />
-      <input
-        type="text" 
-        id="txtEnd"
-        placeholder="End Location"
-        autofocus>
+      <input type="text" id="txtEnd" placeholder="End Location" autofocus style="width:400px">
       <br />
-      <button id="btnSubmit" onclick="calcRoute2(txtFrom.value,txtEnd.value)">Submit</button>
-    
+    <button class="btn1" id="btnSubmit" onclick="calcRoute(txtFrom.value,txtEnd.value)">Submit</button>
+    <!--<button id="btnTest" onclick="markerLatLng(<%= data[5].X %>,<%= data[5].Y %>)">test</button>
+    ;arrayCounter(<%= arrX %>);arrayCounter(<%= arrY %>)
+    <button id="btnCal" onclick="calcRoute2(<%= data[6].X  %>,<%= data[6].Y  %>,<%= data[7].X  %>,<%= data[7].Y  %>)">cal</button>
+    <button id="btnCal2" onclick="calcRoute2(<%= data[7].X  %>,<%= data[7].Y  %>,<%= data[8].X  %>,<%= data[8].Y  %>)">cal2</button>!-->
     <hr>
 
-    <table>
-
-        <% for ( var i = 0 ; i < data.length ; i++){ %>
-            <tr>
-
-                <td>
-                    <%= data[i].X  %>
-                </td>
-                <td>
-                    <%= data[i].Y  %>
-                </td>
-            </tr>
-            <% } %>
-    </table>
-    <button id="btnSubmit" onclick="markerLatLng(<%= data[1].X  %>,<%= data[1].Y  %>)">Submit</button>
-
-    <div id="map_canvas" style="float:left;width:70%;height:480px;">
-  <div style="float:right;width:30%;height:480px;overflow:auto">   
-    <div id="directions_panel" style="width:100%"></div>
-  </div>
-  </div>
+  <div id="map_canvas" style="width:100%;height:480px;"></div>
+    <div style="width:100%;height:180px;overflow:auto">   
+      <div id="directions_panel" style="width:100%"></div>
+    </div>
   </body>
     <footer>
       <div>
