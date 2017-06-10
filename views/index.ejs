@@ -26,22 +26,25 @@
          %>
 
 
-            <!--<%= arrX  %>
-            <%= arrY  %>-->
+            <!--%= arrX  %>
+            %= arrY  %
+            -->
       </div>
 
-
+    <form action="/search" method="get">
       <input type="text" id="txtFrom" placeholder="Start Location" autofocus style="width:400px">
       <br />
       <input type="text" id="txtEnd" placeholder="End Location" autofocus style="width:400px">
       <br />
+      <button class="btn1" id="btnSearch">Search</button>
+    </form>
     <button class="btn1" id="btnSubmit" onclick="calcRoute(txtFrom.value,txtEnd.value)">Submit</button>
     <!--<button id="btnTest" onclick="markerLatLng(<%= data[5].X %>,<%= data[5].Y %>)">test</button>
     ;arrayCounter(<%= arrX %>);arrayCounter(<%= arrY %>)
     <button id="btnCal" onclick="calcRoute2(<%= data[6].X  %>,<%= data[6].Y  %>,<%= data[7].X  %>,<%= data[7].Y  %>)">cal</button>
     <button id="btnCal2" onclick="calcRoute2(<%= data[7].X  %>,<%= data[7].Y  %>,<%= data[8].X  %>,<%= data[8].Y  %>)">cal2</button>!-->
     <hr>
-
+    
   <div id="map_canvas" style="width:100%;height:480px;"></div>
     <div style="width:100%;height:180px;overflow:auto">   
       <div id="directions_panel" style="width:100%"></div>

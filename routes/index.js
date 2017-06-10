@@ -14,7 +14,7 @@ router.get('/', function(req, res, next) {
         var data = rows;
 
         // use index.ejs
-        res.render('index', { title: 'Route Information', data: data});
+        res.render('index', { title: 'Let\'s Mini', data: data});
     });
 
 });
