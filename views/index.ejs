@@ -6,14 +6,29 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js"></script>
     <script type="text/javascript" charset="utf-8" async="" src="/javascripts/Geolocation.js"></script>
+    <script>
+      function save(array){
+        console.log("Support");
+      if (typeof(Storage) !== "undefined") {
+          console.log("Support1");
+          localStorage.setItem("data", JSON.stringify(array));
+          //document.getElementById("result").innerHTML = JSON.parse(localStorage.getItem("data"));
+          console.log(JSON.parse(localStorage.getItem("data")));
+          console.log("Support2");
+          localStorage.removeItem("data");
+      } else {
+          console.log("Sorry, your browser does not support Web Storage...");
+      }
+    }
+    </script>
   </head>
   <body onload="initialize()">
-
+    <p id="demo"></p>
         <h1>Search Mini Here</h1>
         <hr>
 
       <div>
-        <!--%
+        <%
         var arrX = new Array()
         var arrY = new Array()
 
@@ -21,14 +36,8 @@
                     arrX.push(data[i].X)
                     arrY.push(data[i].Y)
          } 
-          arrX = arrX.join('_')
-          arrY = arrY.join('_')
          %>
-
-
-            %= arrX  %>
-            %= arrY  %
-            -->
+            
       </div>
 
     <form action="/" method="post">
@@ -38,11 +47,8 @@
       <br />
       <button class="btn1" id="btnSearch">Search</button>
     </form>
-    <button class="btn1" id="btnSubmit" onclick="calcRoute(txtFrom.value,txtEnd.value)">Submit</button>
-    <!--<button id="btnTest" onclick="markerLatLng(%= data[5].X %>,%= data[5].Y %>)">test</button>
-    ;arrayCounter(%= arrX %>);arrayCounter(%= arrY %>)
-    <button id="btnCal" onclick="calcRoute2(%= data[6].X  %>,%= data[6].Y  %>,%= data[7].X  %>,%= data[7].Y  %>)">cal</button>
-    <button id="btnCal2" onclick="calcRoute2(%= data[7].X  %>,%= data[7].Y  %>,%= data[8].X  %>,%= data[8].Y  %>)">cal2</button>!-->
+    <button class="btn1" id="btnSubmit" onclick="markerLatLng('<%= arrX %>','<%= arrY %>')">Submit</button>
+
     <hr>
     
   <div id="map_canvas" style="width:100%;height:480px;"></div>

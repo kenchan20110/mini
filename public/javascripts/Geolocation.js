@@ -1,4 +1,5 @@
 ﻿var map;
+var markers = [];
 var initialLocation;
 var hk = new google.maps.LatLng(22.38,114.10);
 var browserSupportFlag =  new Boolean();
@@ -8,6 +9,7 @@ var oldDirections = [];
 var currentDirections = null;
 var fromX = document.getElementById("txtFrom");
 var geocoder = new google.maps.Geocoder();
+var directionsService = new google.maps.DirectionsService();
 
 var successCallback = function(position){
   var x = position.coords.latitude;
@@ -41,26 +43,11 @@ function initialize() {
   
   var myOptions = {
     zoom: 17,
+    zoomControl: true,
     mapTypeId: google.maps.MapTypeId.ROADMAP
   };
   map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-  directionsDisplay = new google.maps.DirectionsRenderer({
-    'map': map,
-    'preserveViewport': true,
-    'draggable': true
-  }); 
-  
-  directionsDisplay.setPanel(document.getElementById("directions_panel"));
-
-  google.maps.event.addListener(directionsDisplay, 'directions_changed',
-    function() {
-      if (currentDirections) {
-        oldDirections.push(currentDirections);          
-      }
-      currentDirections = directionsDisplay.getDirections();
-    });
-  
   if(navigator.geolocation) {
     browserSupportFlag = true;
     navigator.geolocation.getCurrentPosition(function(position) {
@@ -100,12 +87,12 @@ function calcRoute(pFrom,pEnd) {
   var request = {
     origin:start,
     destination:end,
-    travelMode: google.maps.DirectionsTravelMode.DRIVING
+    travelMode: google.maps.DirectionsTravelMode.DRIVING,
+    avoidTolls: true
   };
 
   codeAddress();
 
-  var directionsService = new google.maps.DirectionsService();
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(response);
@@ -119,56 +106,81 @@ function codeAddress() {
     var address = document.getElementById( 'txtFrom' ).value;
     geocoder.geocode( { 'address' : address }, function( results, status ) {
         if( status == google.maps.GeocoderStatus.OK ) {
-
-            //In this case it creates a marker, but you can get the lat and lng from the location.LatLng
             map.setCenter( results[0].geometry.location );
-            //var marker = new google.maps.Marker( {
-                //map     : map,
-                //position: results[0].geometry.location
-            //} );
         } else {
             alert( 'Geocode was not successful for the following reason: ' + status );
         }
     } );
 }
 
+function markerLatLng(allX,allY) {
 
-function arrayCounter(arr) {
-  //console.log(arr);
-  //Check to see if the passed in argument is a string, number, or undefined
-  if (typeof arr == "string" || typeof arr == "number" || typeof arr == "undefined") {
-  //If so, return 0, which breaks out of the function
-   console.log("0");
-  }
-  else {
-  //If it's not any of those things, it is of type "object" so it can be an array which is the same as an object
-  console.log(arr.length);
-  }
-}
-
-function markerLatLng(x,y) {
-  //var str1 = x.split("/");
-
-  //var arrX = new Array();
-  //for ( var i = 0 ; i < x.length ; i++){
-    var xy = new google.maps.LatLng(x,y);
+  if(document.getElementById('txtFrom').value !='' && document.getElementById('txtEnd').value !=''){
+  var x = allX.split(",");
+  var y = allY.split(",");
+  deleteMarkers();
+  for ( var i = 0 ; i < x.length ; i++){
+    var xy = new google.maps.LatLng(x[i],y[i]);
+    if ( i == 0 || i == x.length - 1) {
     var marker = new google.maps.Marker({
         position: xy,
         map: map 
     });
-  //}
+    markers.push(marker);
+      if (i ==0){
+        codeAddress();
+      }
+    }
+    if ( i != x.length - 1) {
+      var xy2 = new google.maps.LatLng(x[i+1],y[i+1]);
+      calcRoute2(xy.lat(),xy.lng(),xy2.lat(),xy2.lng());
+}
+    }
+  }else{
+    alert("Please insert route.");
+  }
 }
 
+function setMapOnAll(map) {
+        for (var i = 0; i < markers.length; i++) {
+          markers[i].setMap(map);
+        }
+      }
+
+function deleteMarkers() {
+        setMapOnAll(null);
+        markers = [];
+      }
+
 function calcRoute2(x1,y1,x2,y2) {
+
+  var directionsDisplay2 = new google.maps.DirectionsRenderer({
+    preserveViewport: false,
+    suppressMarkers: true
+  });
+
+  directionsDisplay2.setMap(map);
+
+  directionsDisplay2.setPanel(document.getElementById("directions_panel"));
+
+  google.maps.event.addListener(directionsDisplay2, 'directions_changed',
+    function() {
+      if (currentDirections) {
+        oldDirections.push(currentDirections);          
+      }
+      currentDirections = directionsDisplay2.getDirections();
+    });
+
   var request = {
     origin:{lat: x1, lng: y1},
     destination:{lat: x2, lng: y2},
-    travelMode: google.maps.DirectionsTravelMode.DRIVING
+    travelMode: google.maps.DirectionsTravelMode.DRIVING,
+    avoidTolls: true
   };
-  var directionsService = new google.maps.DirectionsService();
+
   directionsService.route(request, function(response, status) {
     if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(response);
+      directionsDisplay2.setDirections(response);
     }
   });
 

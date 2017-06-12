@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 // home page
-/*router.get('/', function(req, res, next) {
+router.get('/', function(req, res, next) {
 
     var db = req.con;
     var data = "";
@@ -19,13 +19,13 @@ var router = express.Router();
 
 });
 
-router.get('/', function(req, res) {
+/*router.get('/', function(req, res) {
     res.render('search', {title:'Route Information'});
-});*/
+});
 
 router.get('/', function(req, res) {
     res.render('index', {title:'Let\'s Mini'});
-});
+});*/
 
 
 router.post('/', function(req, res) {
@@ -34,7 +34,7 @@ router.post('/', function(req, res) {
 
         var db = req.con;
         var data = "";
-        var cmd = "SELECT * FROM Route WHERE LOC_START_NAMEC like '%" + userFrom + "%'";
+        var cmd = "SELECT * FROM Route WHERE (LOC_START_NAMEC like '%" + userFrom + "%' or LOC_START_NAMEE like '%" + userFrom + "%') and (LOC_END_NAMEC like '%" + userEnd + "%' or LOC_END_NAMEE like '%" + userEnd + "%')";
         
         db.query(cmd, function (err, rows) {
             if (err) {

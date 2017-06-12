@@ -12,12 +12,10 @@
         <h1>Search Mini Here</h1>
         <hr>
 
-    <table>
+    <table border="1">
         <tr>
-            <th>START_C</th>
-            <th>START_E</th>
-            <th>END_C</th>
-            <th>END_E</th>
+            <th>Start from</th>
+            <th>End to</th>
         </tr>
         <% for ( var i = 0 ; i < data.length ; i++){ %>
             <tr>
@@ -25,13 +23,7 @@
                     <%= data[i].LOC_START_NAMEC  %>
                 </td>
                 <td>
-                    <%= data[i].LOC_START_NAMEE  %>
-                </td>
-                <td>
                     <%= data[i].LOC_END_NAMEC  %>
-                </td>
-                <td>
-                    <%= data[i].LOC_END_NAMEE  %>
                 </td>
             </tr>
             <% } %>
@@ -46,5 +38,4 @@
         </a>
       </div>
     </footer>
-
 </html>
