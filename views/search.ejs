@@ -16,6 +16,8 @@
         <tr>
             <th>Start from</th>
             <th>End to</th>
+            <th>Full fare</th>
+            <th>Full fare midnight</th>
         </tr>
         <% for ( var i = 0 ; i < data.length ; i++){ %>
             <tr>
@@ -24,6 +26,12 @@
                 </td>
                 <td>
                     <%= data[i].LOC_END_NAMEC  %>
+                </td>
+                <td>
+                    $<%= data[i].FULL_FARE  %>
+                </td>
+                <td>
+                    $<%= data[i].FULL_FARE_MIDNIGHT  %>
                 </td>
             </tr>
             <% } %>
