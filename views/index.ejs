@@ -2,32 +2,18 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+    <link rel="stylesheet" href="/stylesheets/w3.css">
     <link rel="stylesheet" href="/stylesheets/style.css">
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfyBPzvRgrPuLP1CvFiErhpWvFOhWCjt4"></script>
     <script type="text/javascript" charset="utf-8" async="" src="/javascripts/Geolocation.js"></script>
-    <script>
-      function save(array){
-        console.log("Support");
-      if (typeof(Storage) !== "undefined") {
-          console.log("Support1");
-          localStorage.setItem("data", JSON.stringify(array));
-          //document.getElementById("result").innerHTML = JSON.parse(localStorage.getItem("data"));
-          console.log(JSON.parse(localStorage.getItem("data")));
-          console.log("Support2");
-          localStorage.removeItem("data");
-      } else {
-          console.log("Sorry, your browser does not support Web Storage...");
-      }
-    }
-    </script>
   </head>
-  <body onload="initialize()">
+  <body onload="initialize()" >
+  <div class="w3-content" >
+    <div class="w3-col w3-panel">
     <p id="demo"></p>
-        <h1>Search Mini Here</h1>
+        <h1 class="w3-container w3-padding-32"><b>Search Mini Here</b></h1>
         <hr>
 
-      <div>
         <%
         var arrX = new Array()
         var arrY = new Array()
@@ -37,29 +23,31 @@
                     arrY.push(data[i].Y)
          } 
          %>
-            
-      </div>
 
+    
+    <div class="w3-large w3-margin-bottom">
     <form action="/" method="post">
-      <input type="text" id="txtFrom" name="txtFrom" placeholder="Start Location" autofocus required style="width:400px">
+      <input class="w3-input w3-border" type="text" id="txtFrom" name="txtFrom" placeholder="Start Location" autofocus required >
       <br />
-      <input type="text" id="txtEnd" name="txtEnd" placeholder="End Location" autofocus required style="width:400px">
+      <input class="w3-input w3-border" type="text" id="txtEnd" name="txtEnd" placeholder="End Location" autofocus required >
       <br />
-      <button class="btn1" id="btnSearch">Search</button>
+      <button class="btn1 w3-button w3-section" id="btnSearch">Search</button>
     </form>
-    <button class="btn1" id="btnSubmit" onclick="markerLatLng('<%= arrX %>','<%= arrY %>')">Submit</button>
-
+    <button class="btn1 w3-button w3-section" id="btnSubmit" onclick="markerLatLng('<%= arrX %>','<%= arrY %>')">Submit</button>
+    </div>
     <hr>
     
-  <div id="map_canvas" style="width:100%;height:480px;"></div>
-    <div style="width:100%;height:180px;overflow:auto">   
+  <div class="w3-round-large " id="map_canvas" style="width:100%;height:620px;" ></div>
+    <div style="width:100%;height:340px;overflow:auto">   
       <div id="directions_panel" style="width:100%"></div>
     </div>
+    </div>
+    </div>
   </body>
-    <footer>
-      <div>
+    <footer >
+      <div  class="w3-center">
         <a href="/">
-          <img src="/images/mini.png" width="50%">
+          <img src="/images/mini.png" width="90%">
         </a>
       </div>
     </footer>

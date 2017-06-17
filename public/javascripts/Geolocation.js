@@ -8,6 +8,7 @@ var directionsDisplay;
 var oldDirections = [];
 var currentDirections = null;
 var fromX = document.getElementById("txtFrom");
+var fromY = document.getElementById("txtEnd");
 var geocoder = new google.maps.Geocoder();
 var directionsService = new google.maps.DirectionsService();
 
@@ -197,8 +198,9 @@ function calcRoute2(x1,y1,x2,y2) {
         request.onreadystatechange = function(){
           if(request.readyState == 4 && request.status == 200){
             var data = JSON.parse(request.responseText);
-            var address = data.results[0];
-            fromX.value = address.formatted_address;
+            var address = data.results[1];
+            fromX.value = address.address_components[2].long_name + address.address_components[1].long_name;;
+            //fromY.value = url;
           }
         };
         request.send();
