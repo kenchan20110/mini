@@ -29,10 +29,10 @@
                     <%= data[i].LOC_END_NAMEC  %>
                 </td>
                 <td>
-                    $<%= data[i].FULL_FARE  %>
+                    $<%= (data[i].FULL_FARE).toString()  %>
                 </td>
                 <td>
-                    $<%= data[i].FULL_FARE_MIDNIGHT %>
+                    $<%= (data[i].FULL_FARE_MIDNIGHT).toString() %>
                 </td>
             </tr>
             <% } %>

@@ -20,7 +20,7 @@
         var arrLoc = new Array()
 
          for ( var i = 0 ; i < data.length ; i++){ 
-            if(data[i].X != 'NULL') {
+            if(data[i].X != null) {
               arrX.push(data[i].X)
               arrY.push(data[i].Y)
               arrLoc.push(data[i].STOP_NAMEC)
@@ -29,7 +29,6 @@
             }
          } 
          %>
-
     
     <div class="w3-large w3-margin-bottom">
     <form action="/" method="post">

@@ -142,7 +142,7 @@ function markerLatLng(allX,allY,allLoc) {
     }
 
   for ( var j = 0 ; j < loc.length ; j++){
-    str += "<tr><th>Stop " + (j+1) + "</th><td><a>" + loc[j] + "</a></td></tr>";
+    str += "<tr><th>Stop " + (j+1) + "</th><td><a onclick='select()' class='w3-dropdown-click'>" + loc[j] + "</a></td></tr>";
   }
   str += "</table>";
   //console.log(str);
@@ -153,6 +153,11 @@ function markerLatLng(allX,allY,allLoc) {
     alert("Please insert route.");
   }
 }
+
+function select() {
+    //initialLocation = new google.maps.LatLng(22.38,114.10);
+    //map.setCenter(initialLocation);
+    }
 
 function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
