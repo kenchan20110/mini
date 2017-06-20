@@ -114,11 +114,14 @@ function codeAddress() {
     } );
 }
 
-function markerLatLng(allX,allY) {
+function markerLatLng(allX,allY,allLoc) {
 
   if(document.getElementById('txtFrom').value !='' && document.getElementById('txtEnd').value !=''){
   var x = allX.split(",");
   var y = allY.split(",");
+  var loc = allLoc.split(",");
+  var str = "<table class='w3-table w3-table-all'>";
+
   deleteMarkers();
   for ( var i = 0 ; i < x.length ; i++){
     var xy = new google.maps.LatLng(x[i],y[i]);
@@ -137,6 +140,15 @@ function markerLatLng(allX,allY) {
       calcRoute2(xy.lat(),xy.lng(),xy2.lat(),xy2.lng());
 }
     }
+
+  for ( var j = 0 ; j < loc.length ; j++){
+    str += "<tr><th>Stop " + j + "</th><td><a>" + loc[j] + "</a></td></tr>";
+  }
+  str += "</table>";
+  //console.log(str);
+  document.getElementById("directions_panel").innerHTML = str;
+  //directionsDisplay2.setPanel(document.getElementById("directions_panel"));
+
   }else{
     alert("Please insert route.");
   }
@@ -162,7 +174,7 @@ function calcRoute2(x1,y1,x2,y2) {
 
   directionsDisplay2.setMap(map);
 
-  directionsDisplay2.setPanel(document.getElementById("directions_panel"));
+  //directionsDisplay2.setPanel(document.getElementById("directions_panel"));
 
   google.maps.event.addListener(directionsDisplay2, 'directions_changed',
     function() {

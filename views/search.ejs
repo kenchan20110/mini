@@ -29,10 +29,10 @@
                     <%= data[i].LOC_END_NAMEC  %>
                 </td>
                 <td>
-                    $<%= data[i].FULL_FARE  %>
+                    $<%= parseFloat(data[i].FULL_FARE)  %>
                 </td>
                 <td>
-                    $<%= data[i].FULL_FARE_MIDNIGHT  %>
+                    $<%= parseFloat(data[i].FULL_FARE_MIDNIGHT)  %>
                 </td>
             </tr>
             <% } %>
@@ -44,7 +44,7 @@
     <footer>
       <div  class="w3-center">
         <a href="/">
-          <img src="/images/mini.png" width="90%">
+          <img src="/images/mini.png" width="70%">
         </a>
       </div>
     </footer>

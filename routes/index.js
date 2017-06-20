@@ -34,7 +34,7 @@ router.post('/', function(req, res) {
 
         var db = req.con;
         var data = "";
-        var cmd = "SELECT * FROM Route,Fare WHERE Route.Route_ID = Fare.Route_ROUTE_ID and (LOC_START_NAMEC like '%" + userFrom + "%' or LOC_START_NAMEE like '%" + userFrom + "%') and (LOC_END_NAMEC like '%" + userEnd + "%' or LOC_END_NAMEE like '%" + userEnd + "%')";
+        var cmd = "SELECT * FROM Route,Fare WHERE (ROUTE_ID = Route_ROUTE_ID) and (LOC_START_NAMEC like '%" + userFrom + "%' or LOC_START_NAMEE like '%" + userFrom + "%') and (LOC_END_NAMEC like '%" + userEnd + "%' or LOC_END_NAMEE like '%" + userEnd + "%')";
         
         db.query(cmd, function (err, rows) {
             if (err) {

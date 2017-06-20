@@ -17,10 +17,16 @@
         <%
         var arrX = new Array()
         var arrY = new Array()
+        var arrLoc = new Array()
 
          for ( var i = 0 ; i < data.length ; i++){ 
-                    arrX.push(data[i].X)
-                    arrY.push(data[i].Y)
+            if(data[i].X != 'NULL') {
+              arrX.push(data[i].X)
+              arrY.push(data[i].Y)
+              arrLoc.push(data[i].STOP_NAMEC)
+            }else{
+              arrLoc.push(data[i].STOP_NAMEC)
+            }
          } 
          %>
 
@@ -33,7 +39,7 @@
       <br />
       <button class="btn1 w3-button w3-section" id="btnSearch">Search</button>
     </form>
-    <button class="btn1 w3-button w3-section" id="btnSubmit" onclick="markerLatLng('<%= arrX %>','<%= arrY %>')">Submit</button>
+    <button class="btn1 w3-button w3-section" id="btnSubmit" onclick="markerLatLng('<%= arrX %>','<%= arrY %>','<%= arrLoc %>')">Submit</button>
     </div>
     <hr>
     
@@ -47,7 +53,7 @@
     <footer >
       <div  class="w3-center">
         <a href="/">
-          <img src="/images/mini.png" width="90%">
+          <img src="/images/mini.png" width="70%">
         </a>
       </div>
     </footer>
