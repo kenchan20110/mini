@@ -142,7 +142,7 @@ function markerLatLng(allX,allY,allLoc) {
     }
 
   for ( var j = 0 ; j < loc.length ; j++){
-    str += "<tr><th>Stop " + j + "</th><td><a>" + loc[j] + "</a></td></tr>";
+    str += "<tr><th>Stop " + (j+1) + "</th><td><a>" + loc[j] + "</a></td></tr>";
   }
   str += "</table>";
   //console.log(str);

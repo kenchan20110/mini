@@ -13,7 +13,7 @@
         <h1 class="w3-container w3-padding-32"><b>Search Mini Here</b></h1>
         <hr>
 
-    <table border="1">
+    <table class='w3-table w3-table-all'>
         <tr>
             <th>Start from</th>
             <th>End to</th>
@@ -29,10 +29,10 @@
                     <%= data[i].LOC_END_NAMEC  %>
                 </td>
                 <td>
-                    $<%= parseFloat(data[i].FULL_FARE)  %>
+                    $<%= data[i].FULL_FARE  %>
                 </td>
                 <td>
-                    $<%= parseFloat(data[i].FULL_FARE_MIDNIGHT)  %>
+                    $<%= data[i].FULL_FARE_MIDNIGHT %>
                 </td>
             </tr>
             <% } %>
