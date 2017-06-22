@@ -7,12 +7,16 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfyBPzvRgrPuLP1CvFiErhpWvFOhWCjt4"></script>
     <script type="text/javascript" charset="utf-8" async="" src="/javascripts/Geolocation.js"></script>
   </head>
-  <body onload="initialize()" >
-  <div class="w3-content" >
-    <div class="w3-col w3-panel">
+  <body onload="initialize()" id="wrapper">
+    <h1 class="w3-container w3-padding-32"><b>Search Mini Here</b></h1>
+    <div class="w3-round-large" id="map_canvas" style="width:100%;height:100%;"></div>
+
+  <div  id="over_map">
+    
+      <div  >
     <p id="demo"></p>
-        <h1 class="w3-container w3-padding-32"><b>Search Mini Here</b></h1>
-        <hr>
+        
+        
 
         <%
         var arrX = new Array()
@@ -29,8 +33,8 @@
             }
          } 
          %>
-    
-    <div class="w3-large w3-margin-bottom">
+
+    <div class="w3-large " style="background-color: white;">
     <form action="/" method="post">
       <input class="w3-input w3-border" type="text" id="txtFrom" name="txtFrom" placeholder="Start Location" autofocus required >
       <br />
@@ -40,14 +44,15 @@
     </form>
     <button class="btn1 w3-button w3-section" id="btnSubmit" onclick="markerLatLng('<%= arrX %>','<%= arrY %>','<%= arrLoc %>')">Submit</button>
     </div>
-    <hr>
+   
     
-  <div class="w3-round-large " id="map_canvas" style="width:100%;height:620px;" ></div>
-    <div style="width:100%;height:340px;overflow:auto">   
+  
+    <div style="width:100%;height:200px;overflow:auto">   
       <div id="directions_panel" style="width:100%"></div>
     </div>
     </div>
     </div>
+  
   </body>
     <footer >
       <div  class="w3-center">

@@ -7,6 +7,8 @@
     "start-prod": "PORT=80 node ./bin/www"
   },
   "dependencies": {
+    "@angular/animations": "^4.2.4",
+    "@angular/material": "^2.0.0-beta.7",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
