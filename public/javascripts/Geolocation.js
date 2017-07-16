@@ -45,7 +45,8 @@ function initialize() {
   var myOptions = {
     zoom: 17,
     zoomControl: true,
-    mapTypeId: google.maps.MapTypeId.ROADMAP
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    scrollwheel: false
   };
   map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
@@ -120,7 +121,7 @@ function markerLatLng(allX,allY,allLoc) {
   var x = allX.split(",");
   var y = allY.split(",");
   var loc = allLoc.split(",");
-  var str = "<table class='w3-table w3-table-all'>";
+  var str = "<table class='w3-table w3-table-all' style='position: absolute;top: 10px;right: 49px;display: block;height: 90vh;overflow-y: auto;'>";
 
   deleteMarkers();
   for ( var i = 0 ; i < x.length ; i++){
@@ -223,3 +224,36 @@ function calcRoute2(x1,y1,x2,y2) {
         request.send();
       };
 
+
+
+function getLocation()
+      {
+      if (navigator.geolocation)
+        {
+        navigator.geolocation.getCurrentPosition(showPosition,showError);
+        map.setCenter(initialLocation);
+        }
+      else{alert("Geolocation is not supported by this browser.");}
+      }
+    function showPosition(position)
+      {
+      console.log("Latitude: " + position.coords.latitude + " & Longitude: " + position.coords.longitude);  
+      }
+    function showError(error)
+      {
+      switch(error.code) 
+        {
+        case error.PERMISSION_DENIED:
+          alert("User denied the request for Geolocation.");
+          break;
+        case error.POSITION_UNAVAILABLE:
+          alert("Location information is unavailable.");
+          break;
+        case error.TIMEOUT:
+          alert("The request to get user location timed out.");
+          break;
+        case error.UNKNOWN_ERROR:
+          alert("An unknown error occurred.");
+          break;
+        }
+      }
