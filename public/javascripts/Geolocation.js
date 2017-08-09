@@ -7,8 +7,6 @@ var browserSupportFlag =  new Boolean();
 var directionsDisplay;
 var oldDirections = [];
 var currentDirections = null;
-var fromX = document.getElementById("txtFrom");
-var fromY = document.getElementById("txtEnd");
 var geocoder = new google.maps.Geocoder();
 var directionsService = new google.maps.DirectionsService();
 
@@ -41,7 +39,6 @@ var options = {
 };
 
 function initialize() {
-  
   var myOptions = {
     zoom: 17,
     zoomControl: true,
@@ -107,6 +104,7 @@ function codeAddress() {
 
     var address = document.getElementById( 'txtFrom' ).value;
     geocoder.geocode( { 'address' : address }, function( results, status ) {
+      //console.log(address);
         if( status == google.maps.GeocoderStatus.OK ) {
             map.setCenter( results[0].geometry.location );
         } else {
@@ -115,50 +113,58 @@ function codeAddress() {
     } );
 }
 
-function markerLatLng(allX,allY,allLoc) {
-
-  if(document.getElementById('txtFrom').value !='' && document.getElementById('txtEnd').value !=''){
+function markerLatLng(allX,allY,allLoc,allX2,allY2) {
+  //if(document.getElementById('txtFrom').value !='' && document.getElementById('txtEnd').value !=''){
   var x = allX.split(",");
   var y = allY.split(",");
   var loc = allLoc.split(",");
+  var Allx = allX2.split(",");
+  var Ally = allY2.split(",");
+  //console.log(loc);
   var str = "<table class='w3-table w3-table-all' style='position: absolute;top: 10px;right: 49px;display: block;height: 90vh;overflow-y: auto;'>";
 
   deleteMarkers();
   for ( var i = 0 ; i < x.length ; i++){
+
     var xy = new google.maps.LatLng(x[i],y[i]);
     if ( i == 0 || i == x.length - 1) {
+
     var marker = new google.maps.Marker({
         position: xy,
         map: map 
     });
     markers.push(marker);
-      if (i ==0){
-        codeAddress();
-      }
+
+      //if (i ==0){
+        //codeAddress();
+      //}
     }
     if ( i != x.length - 1) {
       var xy2 = new google.maps.LatLng(x[i+1],y[i+1]);
       calcRoute2(xy.lat(),xy.lng(),xy2.lat(),xy2.lng());
 }
     }
-
   for ( var j = 0 ; j < loc.length ; j++){
-    str += "<tr><th>Stop " + (j+1) + "</th><td><a onclick='select()' class='w3-dropdown-click'>" + loc[j] + "</a></td></tr>";
+    var l;
+    if (Allx[j] > 0){
+      l = Allx[j] + ',' + Ally[j]
+    }
+    str += "<tr><th>Stop " + (j+1) + "</th><td><a onclick='select(" + l + ")' class='w3-dropdown-click'>" + loc[j] + "</a></td></tr>";
   }
   str += "</table>";
   //console.log(str);
   document.getElementById("directions_panel").innerHTML = str;
   //directionsDisplay2.setPanel(document.getElementById("directions_panel"));
 
-  }else{
-    alert("Please insert route.");
-  }
+  //}else{
+    //alert("Please insert route.");
+  //}
 }
 
-function select() {
-    //initialLocation = new google.maps.LatLng(22.38,114.10);
-    //map.setCenter(initialLocation);
-    }
+function select(x,y) {
+    var initialLocation2 = new google.maps.LatLng(x,y);
+    map.setCenter(initialLocation2);
+}
 
 function setMapOnAll(map) {
         for (var i = 0; i < markers.length; i++) {
@@ -172,7 +178,6 @@ function deleteMarkers() {
       }
 
 function calcRoute2(x1,y1,x2,y2) {
-
   var directionsDisplay2 = new google.maps.DirectionsRenderer({
     preserveViewport: false,
     suppressMarkers: true
@@ -210,15 +215,15 @@ function calcRoute2(x1,y1,x2,y2) {
 
         var method = 'GET';
         var url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng='+latitude+','+longitude+'&sensor=true';
-        var async = true;
+        //var async = true;
 
-        request.open(method, url, async);
+        request.open(method, url);
         request.onreadystatechange = function(){
           if(request.readyState == 4 && request.status == 200){
             var data = JSON.parse(request.responseText);
             var address = data.results[1];
-            fromX.value = address.address_components[2].long_name + address.address_components[1].long_name;;
-            //fromY.value = url;
+            //console.log(url);
+            document.getElementById("txtFrom").value = address.address_components[2].long_name + address.address_components[1].long_name;            
           }
         };
         request.send();
