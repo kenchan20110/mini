@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/stylesheets/w3.css">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDfyBPzvRgrPuLP1CvFiErhpWvFOhWCjt4"></script>
+    <script type="text/javascript" charset="utf-8" async="" src="/javascripts/Geolocation.js"></script>
+  </head>
+  <body >
+    <div class="w3-content" >
+    <div class="w3-col w3-panel">
+        <h1 class="w3-container w3-padding-32"><b>Search Mini Here</b></h1>
+        <hr>
+
+    <table class='w3-table w3-table-all'>
+        <tr>
+            <th>Start from</th>
+            <th>End to</th>
+            <th>Full fare</th>
+            <th>Full fare midnight</th>
+        </tr>
+        <% for ( var i = 0 ; i < data.length ; i++){ %>
+            <tr>
+                <td>
+                    <%= data[i].LOC_START_NAMEC  %>
+                </td>
+                <td>
+                    <%= data[i].LOC_END_NAMEC  %>
+                </td>
+                <td>
+                    $ 20
+                </td>
+                <td>
+                    $ 23
+                </td>
+            </tr>
+            <% } %>
+    </table>
+     </div>
+    </div>
+
+  </body>
+    <footer>
+      <div  class="w3-center">
+        <a href="/">
+          <img src="/images/mini.png" width="70%">
+        </a>
+      </div>
+    </footer>
+</html>
