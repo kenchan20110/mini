@@ -50,20 +50,23 @@
   </body>
   <script>
       function localS() {
-        sessionStorage.clear();
-        sessionStorage.X = '<%=arrX %>';
-        sessionStorage.Y = '<%=arrY %>';
-        sessionStorage.Loc = '<%=arrLoc %>';
-        sessionStorage.allX = '<%=arrAllX %>';
-        sessionStorage.allY = '<%=arrAllY %>';
-        if (sessionStorage.X.length !== 0) {
-          var X = sessionStorage.X;
-          var Y = sessionStorage.Y;
-          var Loc = sessionStorage.Loc;
-          var allX = sessionStorage.allX;
-          var allY = sessionStorage.allY;
+        sessionStorage.setItem('X', '<%=arrX %>')
+        sessionStorage.setItem('Y', '<%=arrY %>')
+        sessionStorage.setItem('Loc', '<%=arrLoc %>')
+        sessionStorage.setItem('allX', '<%=arrAllX %>')
+        sessionStorage.setItem('allY', '<%=arrAllY %>')
+        if (sessionStorage.getItem("X").length !== 0) {
+          var X = sessionStorage.getItem("X");
+          var Y = sessionStorage.getItem("Y");
+          var Loc = sessionStorage.getItem("Loc");
+          var allX = sessionStorage.getItem("allX");
+          var allY = sessionStorage.getItem("allY");
           markerLatLng(X,Y,Loc,allX,allY);
-          sessionStorage.clear();
+        }
+        var i = sessionStorage.length;
+        while(i--) {
+          var key = sessionStorage.key(i);
+          sessionStorage.removeItem(key);
         }
       }
     </script>
