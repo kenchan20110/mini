@@ -48,32 +48,6 @@
       <div id="directions_panel"></div>
   
   </body>
-  <script>
-      function localS() {
-        var i = sessionStorage.length;
-          while(i--) {
-            var key = sessionStorage.key(i);
-            sessionStorage.removeItem(key);
-          }
-        sessionStorage.setItem('X', '<%=arrX %>')
-        sessionStorage.setItem('Y', '<%=arrY %>')
-        sessionStorage.setItem('Loc', '<%=arrLoc %>')
-        sessionStorage.setItem('allX', '<%=arrAllX %>')
-        sessionStorage.setItem('allY', '<%=arrAllY %>')
-        if (sessionStorage.getItem("X").length !== 0) {
-          var X = sessionStorage.getItem("X");
-          var Y = sessionStorage.getItem("Y");
-          var Loc = sessionStorage.getItem("Loc");
-          var allX = sessionStorage.getItem("allX");
-          var allY = sessionStorage.getItem("allY");
-          markerLatLng(X,Y,Loc,allX,allY);
-        }
-        i = sessionStorage.length;
-        while(i--) {
-          var key = sessionStorage.key(i);
-          sessionStorage.removeItem(key);
-        }
-      }
-    </script>
+
     
 </html>
