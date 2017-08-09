@@ -39,7 +39,6 @@ var options = {
 };
 
 function initialize() {
-  window.localStorage.clear();
   var myOptions = {
     zoom: 17,
     zoomControl: true,

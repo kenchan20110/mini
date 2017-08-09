@@ -4,25 +4,8 @@ var router = express.Router();
 // home page
 router.get('/', function(req, res, next) {
     var data = 0;
-    /*var db = req.con;
-    var data = "";
-
-    db.query('SELECT * FROM Route,RStop WHERE ROUTE_ID = Route_ROUTE_ID', function(err, rows) {
-        if (err) {
-            console.log(err);
-        }
-        var data = rows;
-
-        // use index.ejs*/
-        res.render('index', { data: data});
-    //});
-
+    res.render('index', { data: data});
 });
-
-/*
-router.get('/', function(req, res) {
-    res.render('index', {title:'Let\'s Mini'});
-});*/
 
 router.post('/', function(req, res) {
     var userFrom = req.body['txtFrom'],

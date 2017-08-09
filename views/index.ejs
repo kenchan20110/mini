@@ -50,19 +50,20 @@
   </body>
   <script>
       function localS() {
-        localStorage.setItem('X', '<%=arrX %>')
-        localStorage.setItem('Y', '<%=arrY %>')
-        localStorage.setItem('Loc', '<%=arrLoc %>')
-        localStorage.setItem('allX', '<%=arrAllX %>')
-        localStorage.setItem('allY', '<%=arrAllY %>')
-        if (localStorage.getItem("X").length !== 0) {
-          var X = localStorage.getItem("X");
-          var Y = localStorage.getItem("Y");
-          var Loc = localStorage.getItem("Loc");
-          var allX = localStorage.getItem("allX");
-          var allY = localStorage.getItem("allY");
+        sessionStorage.clear();
+        sessionStorage.X = '<%=arrX %>';
+        sessionStorage.Y = '<%=arrY %>';
+        sessionStorage.Loc = '<%=arrLoc %>';
+        sessionStorage.allX = '<%=arrAllX %>';
+        sessionStorage.allY = '<%=arrAllY %>';
+        if (sessionStorage.X.length !== 0) {
+          var X = sessionStorage.X;
+          var Y = sessionStorage.Y;
+          var Loc = sessionStorage.Loc;
+          var allX = sessionStorage.allX;
+          var allY = sessionStorage.allY;
           markerLatLng(X,Y,Loc,allX,allY);
-          window.localStorage.clear();
+          sessionStorage.clear();
         }
       }
     </script>
