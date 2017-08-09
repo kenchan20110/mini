@@ -50,6 +50,11 @@
   </body>
   <script>
       function localS() {
+        var i = sessionStorage.length;
+          while(i--) {
+            var key = sessionStorage.key(i);
+            sessionStorage.removeItem(key);
+          }
         sessionStorage.setItem('X', '<%=arrX %>')
         sessionStorage.setItem('Y', '<%=arrY %>')
         sessionStorage.setItem('Loc', '<%=arrLoc %>')
@@ -63,7 +68,7 @@
           var allY = sessionStorage.getItem("allY");
           markerLatLng(X,Y,Loc,allX,allY);
         }
-        var i = sessionStorage.length;
+        i = sessionStorage.length;
         while(i--) {
           var key = sessionStorage.key(i);
           sessionStorage.removeItem(key);
