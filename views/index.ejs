@@ -62,11 +62,7 @@
           var allX = localStorage.getItem("allX");
           var allY = localStorage.getItem("allY");
           markerLatLng(X,Y,Loc,allX,allY);
-          localStorage.removeItem("X");
-          localStorage.removeItem("Y");
-          localStorage.removeItem("Loc");
-          localStorage.removeItem("allX");
-          localStorage.removeItem("allY");
+          localStorage.clear();
         }
       }
     </script>
