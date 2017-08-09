@@ -19,10 +19,7 @@ router.get('/', function(req, res, next) {
 
 });
 
-/*router.get('/', function(req, res) {
-    res.render('search', {title:'Route Information'});
-});
-
+/*
 router.get('/', function(req, res) {
     res.render('index', {title:'Let\'s Mini'});
 });*/
@@ -40,10 +37,7 @@ router.post('/', function(req, res) {
                 console.log(err);
             }
             var data = rows;
-            //window.localStorage.setItem("data", data);
-            //res.render('index');
-            //res.render('index', { data: data});
-            console.log(req.body);
+            //console.log(req.body);
             res.render('index', {data: data});
         });   
 });
